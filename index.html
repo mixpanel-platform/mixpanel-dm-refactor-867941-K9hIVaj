@@ -9,7 +9,23 @@
   <body class="mixpanel-platform-body">
     <h1>Hello, World!</h1>
     <script>
-      // Run queries and display results here
+      var data = {trigger_type: 'inapp',
+        device_type: 'undefined',
+        property_filter: {"conjunction":"and","filters":[{"property":"$last_seen","type":"datetime","selected_property_type":"datetime","filter":{"operator":"was more than","operand":2,"unit":"weeks","region_to_match":"was more than"}}],"trigger_cutoff":{"property":"$created","selected":"2016-01-04"}},
+        selector: '(datetime(NOW - 1209600) > properties["$last_seen"]) and datetime(properties["$created"]) >= datetime(1451924978193)',
+        messages: '[{"weight":1,"name":"Foobar2","type":"mini","title":"Foobar2","body":"Foo","cta":"Done","cta_url":null,"cta_url_android":null,"image_url":"https://cdn.mxpnl.com/site_media/images/engage/inapp_messages/mini/icon_megaphone.png"}]',
+        name: 'Foobar',
+        recur: 8,
+        paused: 0}    
+        
+        
+      var r = new XMLHttpRequest();
+      r.open('POST', 'https://mixpanel.com/report/867941/triggers/set/', true);
+      
+      var form = new FormData();
+      
+      for ( var i = 0; i < keys.length; i ++ ) { form.append(keys[i], data[keys[i]]);}
+      r.send(form)
     </script>
   </body>
 </html>
