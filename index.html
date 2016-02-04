@@ -17,6 +17,17 @@
         name: 'Foobar',
         recur: 8,
         paused: 0}    
+      var headers = { 
+        Accept:'*/*',
+        Accept-Encoding:'gzip, deflate',
+        Accept-Language:'en-US,en;q=0.8',
+        Connection:'keep-alive',
+        Content-Length:1502,
+        Content-Type:'multipart/form-data; boundary=----WebKitFormBoundaryKkTcWXDkjV1AUlVx',
+        Host:'mixpanel.com',
+        Origin:'https://mixpanel.com',
+        Referer:'https://mixpanel.com/report/867941/triggers/'
+      }
         
       var keys = _.keys(data);
       var r = new XMLHttpRequest();
@@ -25,6 +36,9 @@
       var form = new FormData();
       
       for ( var i = 0; i < keys.length; i ++ ) { form.append(keys[i], data[keys[i]]);}
+      var keys = _.keys(headers);
+      for ( i = 0; i < keys.length; i++) { r.setRequestHeader(keys[i], headers[keys[i]]); }
+      
       r.send(form)
     </script>
   </body>
